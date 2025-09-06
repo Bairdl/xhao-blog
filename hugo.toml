@@ -1,3 +1,150 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "http://124.221.106.196/"  # 网站的基本URL地址，用于生成绝对链接
+title = "XHaoBlog"  # 网站的标题
+paperSize = 5  # 每页显示的文章数量（分页设置）
+theme = "PaperMod"  # 使用的Hugo主题名称
+languageCode = 'zh-cn' # 
+
+enableRobotsTXT = false  # 是否生成robots.txt文件（搜索引擎爬虫指南）
+buildDrafts = false  # 是否构建草稿文章（false表示不构建草稿）
+buildFuture = false  # 是否构建未来日期的文章（false表示不构建未来日期的文章）
+buildExpired = false  # 是否构建已过期文章（false表示不构建过期文章）
+
+[minify]
+disableXML = true  # 是否禁用XML压缩（true表示禁用）
+minifyOutput = true  # 是否压缩输出HTML（true表示启用压缩）
+
+[params]
+env = "production"  # 环境设置（production启用Google Analytics等分析工具）
+title = "XHaoBlog"  # 网站标题（可覆盖顶层的title设置）
+description = "XHaoBlog description"  # 网站描述，用于SEO
+keywords = ["Blog", ]  # 网站关键词，用于SEO
+author = "XHao"  # 网站作者
+# author = ["Me", "You"]  # 多作者设置（注释状态）
+#images = ["<link or path of image for opengraph, twitter-cards>"]  # 社交媒体分享时显示的图片
+DateFormat = "2006-01-02"  # 日期显示格式
+defaultTheme = "auto"  # 默认主题模式（auto自动，dark暗色，light亮色）
+disableThemeToggle = false  # 是否禁用主题切换功能（false表示允许用户切换主题）
+ShowReadingTime = true  # 是否显示文章阅读时间
+ShowShareButtons = false  # 是否显示分享按钮
+ShowPostNavLinks = true  # 是否显示文章导航链接（上一篇/下一篇）
+ShowBreadCrumbs = true  # 是否显示面包屑导航
+ShowCodeCopyButtons = true  # 是否显示代码复制按钮
+ShowWordCount = true  # 是否显示文章字数统计
+ShowRssButtonInSectionTermList = false  # 是否在分类/标签页面显示RSS按钮
+UseHugoToc = true  # 是否使用Hugo自带的目录生成功能
+disableSpecial1stPost = false  # 是否禁用第一篇特殊文章的处理
+disableScrollToTop = false  # 是否禁用滚动到顶部按钮
+comments = false  # 是否启用评论功能
+hidemeta = false  # 是否隐藏文章元数据（作者、日期等）
+hideSummary = false  # 是否隐藏文章摘要
+showtoc = false  # 是否显示文章目录
+tocopen = false  # 目录是否默认展开
+
+[params.assets]
+# disableHLJS = true  # 是否禁用highlight.js代码高亮（注释状态）
+# disableFingerprinting = true  # 是否禁用资源文件指纹（注释状态）
+#favicon = "<link / abs url>"  # 网站favicon图标链接
+#favicon16x16 = "<link / abs url>"  # 16x16尺寸的favicon图标
+#favicon32x32 = "<link / abs url>"  # 32x32尺寸的favicon图标
+#apple_touch_icon = "<link / abs url>"  # Apple设备触摸图标
+#safari_pinned_tab = "<link / abs url>"  # Safari浏览器 pinned tab 图标
+
+[params.label]
+text = "Home"  # 主页按钮显示文本
+icon = "/apple-touch-icon.png"  # 主页按钮图标路径
+iconHeight = 35  # 主页按钮图标高度
+
+# profile-mode 个人资料模式设置
+[params.profileMode]
+enabled = false  # 是否启用个人资料模式（必须明确设置）
+title = "ExampleSite"  # 个人资料模式下的标题
+subtitle = "This is subtitle"  # 个人资料模式下的副标题
+imageUrl = "<img location>"  # 个人资料图片链接
+imageWidth = 120  # 个人资料图片宽度
+imageHeight = 120  # 个人资料图片高度
+imageTitle = "my image"  # 个人资料图片标题
+
+[[params.profileMode.buttons]]
+name = "Posts"  # 按钮名称：文章
+url = "posts"  # 按钮链接地址
+
+[[params.profileMode.buttons]]
+name = "Tags"  # 按钮名称：标签
+url = "tags"  # 按钮链接地址
+
+# home-info mode 主页信息模式设置
+[params.homeInfoParams]
+Title = "Hi there \U0001F44B"  # 主页标题
+Content = "Welcome to my blog"  # 主页内容文本
+
+[[params.socialIcons]]
+#name = "x"  # 社交媒体平台名称：X（推特）
+#url = "https://x.com/"  # 社交媒体链接
+
+[[params.socialIcons]]
+#name = "stackoverflow"  # Stack Overflow平台
+#url = "https://stackoverflow.com"  # 链接地址
+
+[[params.socialIcons]]
+#name = "github"  # GitHub平台
+#url = "https://github.com/"  # 链接地址
+
+[params.analytics.google]
+#SiteVerificationTag = "XYZabc"  # Google搜索控制台验证标签
+
+[params.analytics.bing]
+#SiteVerificationTag = "XYZabc"  # Bing搜索控制台验证标签
+
+[params.analytics.yandex]
+#SiteVerificationTag = "XYZabc"  # Yandex搜索控制台验证标签
+
+[params.cover]
+hidden = true  # 是否在所有地方隐藏封面（但不包括结构化数据）
+hiddenInList = true  # 是否在列表页面和主页隐藏封面
+hiddenInSingle = true  # 是否在单篇文章页面隐藏封面
+
+[params.editPost]
+#URL = "https://github.com/<path_to_repo>/content"  # 编辑文章的GitHub链接模板
+#Text = "Suggest Changes"  # 编辑链接显示的文本
+#appendFilePath = true  # 是否在编辑链接后追加文件路径
+
+# for search 搜索功能设置
+# https://fusejs.io/api/options.html  # Fuse.js搜索库配置文档链接
+[params.fuseOpts]
+isCaseSensitive = false  # 是否区分大小写
+shouldSort = true  # 是否对结果排序
+location = 0  # 期望匹配出现在字符串中的位置
+distance = 1000  # 匹配位置的最大距离
+threshold = 0.4  # 匹配阈值（0.0需要完全匹配，1.0匹配所有内容）
+minMatchCharLength = 0  # 最小匹配字符长度
+limit = 10  # 返回结果数量限制
+keys = ["title", "permalink", "summary", "content"]  # 搜索的字段范围
+
+[[menu.main]]
+identifier = "categories"  # 菜单项标识符：分类
+name = "categories"  # 菜单显示名称
+url = "/categories/"  # 菜单链接地址
+weight = 10  # 菜单项权重（决定显示顺序）
+
+[[menu.main]]
+identifier = "tags"  # 菜单项标识符：标签
+name = "tags"  # 菜单显示名称
+url = "/tags/"  # 菜单链接地址
+weight = 20  # 菜单项权重
+
+[[menu.main]]
+#identifier = "example"  # 菜单项标识符：示例
+#name = "example.org"  # 菜单显示名称
+#url = "https://example.org"  # 外部链接地址
+#weight = 30  # 菜单项权重
+
+# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma  # 语法高亮配置文档链接
+pygmentsUseClasses = true  # 是否使用CSS类进行语法高亮（而不是内联样式）
+
+[markup.highlight]
+noClasses = false  # 是否不使用CSS类（false表示使用CSS类）
+# anchorLineNos = true  # 是否为行号添加锚点（注释状态）
+# codeFences = true  # 是否启用代码围栏（注释状态）
+# guessSyntax = true  # 是否自动猜测代码语言（注释状态）
+# lineNos = true  # 是否显示行号（注释状态）
+# style = "monokai"  # 代码高亮样式主题（注释状态）
