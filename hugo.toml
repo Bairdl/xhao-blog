@@ -1,4 +1,5 @@
-baseURL = "http://124.221.106.196/"  # 网站的基本URL地址，用于生成绝对链接
+# baseURL = "http://124.221.106.196/"  # 网站的基本URL地址，用于生成绝对链接
+baseURL = "https://bairdl.github.io/xhao-blog/"
 title = "XHaoBlog"  # 网站的标题
 paperSize = 5  # 每页显示的文章数量（分页设置）
 theme = "PaperMod"  # 使用的Hugo主题名称
@@ -137,9 +138,8 @@ weight = 20  # 菜单项权重
 #name = "example.org"  # 菜单显示名称
 #url = "https://example.org"  # 外部链接地址
 #weight = 30  # 菜单项权重
-
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma  # 语法高亮配置文档链接
-pygmentsUseClasses = true  # 是否使用CSS类进行语法高亮（而不是内联样式）
+# pygmentsUseClasses = true  # 是否使用CSS类进行语法高亮（而不是内联样式）
 
 [markup.highlight]
 noClasses = false  # 是否不使用CSS类（false表示使用CSS类）
