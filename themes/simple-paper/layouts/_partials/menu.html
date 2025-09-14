@@ -30,33 +30,42 @@ Renders a menu for the given menu ID.
 </nav>
 {{- end }}
 
-{{- define "_partials/inline/menu/walk.html" }}
-  {{- $page := .page }}
-  {{- range .menuEntries }}
-    {{- $attrs := dict "href" .URL }}
-    {{/*  <p>{{.URL}}</p>  */}}
 
-    {{- $attrs = merge $attrs (dict "class" "text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium") }}
-    {{- if $page.IsMenuCurrent .Menu . }}
-      {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
-    {{- else if $page.HasMenuCurrent .Menu .}}
-      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
-    {{- end }}
-    {{- $name := .Name }}
-    {{- with .Identifier }}
-      {{- with T . }}
-        {{- $name = . }}
-      {{- end }}
-    {{- end }}
-    <li>
-      <a {{- range $k, $v :=$attrs }} {{ with $v }} {{ printf "%s=%q" $k $v | safeHTMLAttr }} {{ end }}{{ end -}}>
-        {{ $name }}
-      </a>
-      {{- with .Children }}
-        <ul>
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-        </ul>
-      {{- end }}
-    </li>
+{{- define "_partials/inline/menu/walk.html" }}
+{{- $page := .page }}
+{{- range .menuEntries }}
+{{- $attrs := dict "href" .URL }}
+
+{{- $class := "text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors" -}}
+
+{{- /* 修改这里的条件判断 */ -}}
+{{- $isCurrent := $page.IsMenuCurrent .Menu . -}}
+{{- $hasCurrent := $page.HasMenuCurrent .Menu . -}}
+
+{{- if or $isCurrent (and (eq .URL "/posts/") (eq $page.Section "posts")) }}
+  {{- $class = print $class " bg-blue-100 text-blue-800" -}}
+  {{- $attrs = merge $attrs (dict "aria-current" "page") -}}
+{{- else if or $hasCurrent (and (eq .URL "/posts/") (eq $page.Section "posts")) }}
+  {{- $class = print $class " bg-gray-100 text-gray-900" -}}
+  {{- $attrs = merge $attrs (dict "aria-current" "true") -}}
+{{- end }}
+
+{{- $attrs = merge $attrs (dict "class" $class) -}}
+
+<!-- 剩余代码保持不变 -->
+{{- $name := .Name }}
+{{- with .Identifier }}
+  {{- with T . }}
+    {- $name = . }}
   {{- end }}
+{{- end }}
+
+  <a {{- range $k, $v :=$attrs }} {{ with $v }} {{ printf "%s=%q" $k $v | safeHTMLAttr }} {{ end }}{{ end -}}>{{ $name }}</a>
+  {{- with .Children }}
+  <ul>
+    {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+  </ul>
+  {{- end }}
+
+{{- end }}
 {{- end }}
