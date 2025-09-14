@@ -1,0 +1,6 @@
+# baseURL = 'http://124.22.1.106.196:8081/'
+baseURL = "https://bairdl.github.io/xhao-blog/"
+languageCode = 'zh-CN'
+title = "XHao's blog"
+theme = "simple-paper"
+ignoreFiles = ["themes/.*/content/.*"]

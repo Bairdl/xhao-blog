@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body class="bg-gradient-to-b from-blue-100 to-blue-50 text-gray-900 flex flex-col min-h-screen">
+  <header class="sticky max-w-8xl px-4 sm:px-6 lg:px-8 top-0 z-50">
+    {{ partial "header.html" . }}
+  </header>
+  
+  <main class="flex-grow container  mx-auto max-w-8xl px-4 sm:px-6 lg:px-8 py-8 pt-18">
+    {{ block "main" . }}{{ end }}
+  </main>
+  
+  <footer class="border-t mt-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+    {{ partial "footer.html" . }}
+  </footer>
+</body>
+</html>

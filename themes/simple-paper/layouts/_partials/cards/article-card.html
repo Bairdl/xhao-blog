@@ -1,0 +1,38 @@
+{{/* 
+  参数：
+  .article - 文章对象（必需）
+  .showSummary - 是否显示摘要（可选，默认true）
+*/}}
+
+{{ $article := .article }}
+{{ $showSummary := .showSummary | default true }}
+
+<div class="bg-white rounded-xl border border-gray-100 shadow-lg hover:shadow-xl transition-all overflow-hidden flex flex-col h-full">
+  {{/* 图片部分（可选） */}}
+  {{/* <img class="w-full h-48 object-cover" src="{{ $article.Params.image }}"> */}}
+  
+  <div class="p-6 flex-grow">
+  <h3 class="text-lg font-bold mb-3">
+    <a href="{{ $article.RelPermalink }}" class="hover:text-blue-600">{{ $article.LinkTitle }}</a>
+  </h3>
+  
+  {{ if and $showSummary $article.Summary }}
+    {{ if gt (len $article.Summary) 150 }}
+      <div class="space-y-2">  <!-- 添加容器控制间距 -->
+        <p class="text-gray-600 text-sm">
+          {{ $article.Summary | truncate 150 "..." }}
+        </p>
+        <a href="{{ $article.Permalink }}" class="text-blue-600 hover:text-blue-700 hover:underline text-sm inline-block">阅读更多</a>
+      </div>
+    {{ else }}
+      <p class="text-gray-600 text-sm mb-4">{{ $article.Summary }}</p>
+    {{ end }}
+  {{ end }}
+</div>
+  
+  <div class="px-6 pb-4 pt-2 border-t border-gray-100">
+    <div class="flex items-center text-xs text-black-500">
+      <time>{{ $article.Date.Format site.Params.zh.dateFormat }}</time>
+    </div>
+  </div>
+</div>

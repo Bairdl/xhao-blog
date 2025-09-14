@@ -1,0 +1,90 @@
+# 工作流的名称
+name: Deploy Hugo to GitHub Pages
+
+# 触发此工作流的条件
+on:
+  # 当向 "main" 分支进行 push 操作时触发
+  push:
+    branches: ["main"]  # 你的源码分支
+  # 当针对 "main" 分支创建 pull request 时触发
+  pull_request:
+    branches: ["main"]  # 你的源码分支
+  # 允许在 GitHub 界面上手动触发此工作流
+  workflow_dispatch:
+
+# 设置此工作流所需的权限
+permissions:
+  contents: read    # 授予读取仓库内容的权限
+  pages: write      # 授予向 GitHub Pages 写入的权限
+  id-token: write   # 授予写入 ID tokens 的权限（用于身份验证）
+
+# 并发控制设置，防止多个部署同时进行
+concurrency:
+  group: "pages"             # 并发组的名称
+  cancel-in-progress: false  # 不取消正在进行中的部署
+
+# 定义工作流中的任务（jobs）
+jobs:
+  # 构建任务：负责编译 Hugo 站点
+  build:
+    # 指定任务运行的环境：最新版本的 Ubuntu
+    runs-on: ubuntu-latest
+    # 定义构建任务的一系列步骤
+    steps:
+      # 步骤1：检出（下载）仓库代码
+      - name: Checkout
+        # 使用官方的 checkout Action
+        uses: actions/checkout@v4
+        with:
+          # 重要：递归地克隆子模块（如果使用主题子模块必须设置）
+          submodules: recursive
+          # 获取全部的历史记录，而不仅仅是最近的一次提交
+          fetch-depth: 0
+
+      # 步骤2：安装和设置 Hugo 环境
+      - name: Setup Hugo
+        # 使用社区维护的 Hugo Action
+        uses: peaceiris/actions-hugo@v2
+        with:
+          # 安装最新版本的 Hugo
+          hugo-version: 'latest'
+          # 安装扩展版本的 Hugo（支持 Sass/SCSS）
+          extended: true
+
+      # 步骤3：执行 Hugo 构建命令
+      - name: Build
+        # 运行 Hugo 命令，并启用压缩优化（minify）
+        run: hugo --minify
+
+      # 步骤4：配置 GitHub Pages 构建环境
+      - name: Setup Pages
+        # 使用官方的 configure-pages Action
+        uses: actions/configure-pages@v4
+
+      # 步骤5：将构建产物（public 目录）上传，供部署任务使用
+      - name: Upload artifact
+        # 使用官方的 upload-pages-artifact Action
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 指定要上传的路径：Hugo 生成的静态文件目录
+          path: ./public
+
+  # 部署任务：负责将构建好的站点部署到 GitHub Pages
+  deploy:
+    # 定义部署环境
+    environment:
+      name: github-pages  # 环境名称
+      # 部署成功后，该环境的 URL 将指向 Pages 站点
+      url: ${{ steps.deployment.outputs.page_url }}
+    # 指定任务运行的环境：最新版本的 Ubuntu
+    runs-on: ubuntu-latest
+    # 声明此任务依赖于 build 任务，确保先构建后部署
+    needs: build
+    # 定义部署任务的一系列步骤
+    steps:
+      # 步骤1：执行部署操作
+      - name: Deploy to GitHub Pages
+        # 为此步骤设置一个 ID，以便后续引用其输出
+        id: deployment
+        # 使用官方的 deploy-pages Action 进行部署
+        uses: actions/deploy-pages@v4

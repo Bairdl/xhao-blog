@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <div class="container mx-auto px-4 py-8">
+    {{/*  <h1 class="text-3xl font-bold text-center mb-8">所有标签</h1>  */}}
+    {{ .Content }}
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {{ range .Data.Terms.Alphabetical }}
+        <a href="{{ .Page.RelPermalink }}" 
+          class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 text-center group">
+          <span class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">
+            {{ .Page.Title }}
+          </span>
+          <span class="block mt-2 text-sm text-gray-500">
+            {{ .Count }} 篇文章
+          </span>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}
+

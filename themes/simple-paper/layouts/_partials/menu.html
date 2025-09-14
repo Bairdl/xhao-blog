@@ -1,0 +1,62 @@
+{{- /*
+Renders a menu for the given menu ID.
+
+@context {page} page The current page.
+@context {string} menuID The menu ID.
+
+@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+*/}}
+
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+
+{{- with index site.Menus $menuID }}
+<nav class="bg-white shadow-sm fixed  top-0 left-0 right-0 z-50">
+  <div class="max-w-8xl px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- 左侧Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="text-xl font-bold text-gray-800">{{ site.Title }}</a>
+      </div>
+
+      <!-- 中间导航链接 -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+{{- end }}
+
+{{- define "_partials/inline/menu/walk.html" }}
+  {{- $page := .page }}
+  {{- range .menuEntries }}
+    {{- $attrs := dict "href" .URL }}
+    {{/*  <p>{{.URL}}</p>  */}}
+
+    {{- $attrs = merge $attrs (dict "class" "text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium") }}
+    {{- if $page.IsMenuCurrent .Menu . }}
+      {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
+    {{- else if $page.HasMenuCurrent .Menu .}}
+      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
+    {{- end }}
+    {{- $name := .Name }}
+    {{- with .Identifier }}
+      {{- with T . }}
+        {{- $name = . }}
+      {{- end }}
+    {{- end }}
+    <li>
+      <a {{- range $k, $v :=$attrs }} {{ with $v }} {{ printf "%s=%q" $k $v | safeHTMLAttr }} {{ end }}{{ end -}}>
+        {{ $name }}
+      </a>
+      {{- with .Children }}
+        <ul>
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </ul>
+      {{- end }}
+    </li>
+  {{- end }}
+{{- end }}
