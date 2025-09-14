@@ -1,0 +1,30 @@
+{{ if .Params.mermaid }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  // 在 Mermaid 初始化后执行
+    mermaid.initialize({ startOnLoad: false });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // 转换所有 language-mermaid 代码块
+        document.querySelectorAll('pre code.language-mermaid').forEach((el) => {
+            const container = document.createElement('div');
+              container.className = 'mermaid flex justify-center';  // 添加flex居中
+            {{/*  container.className = 'mermaid';  */}}
+            container.textContent = el.textContent;
+            el.parentElement.replaceWith(container);
+        });
+  
+        // 渲染所有 Mermaid 图表
+        mermaid.init();
+    });
+  console.log("mermaid init.")
+</script>
+{{/*  <script>
+    Array.from(document.getElementsByClassName("language-mermaid")).forEach(
+            (el) =>{
+                el.parentElement.outerHTML = `<div class="mermaid">${el.innerHTML}</div>`;
+                console.log("replace");
+            }
+        );
+</script>  */}}
+{{- end -}}
