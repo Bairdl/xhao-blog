@@ -8,8 +8,7 @@
         // 转换所有 language-mermaid 代码块
         document.querySelectorAll('pre code.language-mermaid').forEach((el) => {
             const container = document.createElement('div');
-              container.className = 'mermaid flex justify-center';  // 添加flex居中
-            {{/*  container.className = 'mermaid';  */}}
+            container.className = 'mermaid';
             container.textContent = el.textContent;
             el.parentElement.replaceWith(container);
         });
