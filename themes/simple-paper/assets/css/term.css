@@ -1,0 +1,35 @@
+/* 主容器样式 */
+.main-container {
+  max-width: 1024px;       /* container */
+  margin: 0 auto;          /* mx-auto */
+  padding: 2rem 1rem;      /* px-4 py-8 */
+}
+
+/* 页面标题样式 */
+.page-title {
+  font-size: 1.875rem;     /* text-3xl */
+  font-weight: 700;        /* font-bold */
+  text-align: center;      /* text-center */
+  margin-bottom: 2rem;     /* mb-8 */
+}
+
+/* 文章网格布局 */
+.article-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;               /* gap-8 */
+  margin-top: 2rem;        /* mt-8 */
+}
+
+/* 响应式布局 */
+@media (min-width: 768px) {
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-grid {
+    grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
+  }
+}

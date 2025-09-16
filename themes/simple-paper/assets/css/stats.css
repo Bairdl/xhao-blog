@@ -1,0 +1,59 @@
+/* 主容器样式 */
+.main-container {
+  max-width: 1024px;       /* container */
+  margin: 0 auto;          /* mx-auto */
+  padding: 2rem 1rem;      /* px-4 py-8 */
+}
+
+/* 页面标题 */
+.page-title {
+  font-size: 1.875rem;     /* text-3xl */
+  font-weight: 700;        /* font-bold */
+  text-align: center;      /* text-center */
+  margin-bottom: 2rem;     /* mb-8 */
+}
+
+/* 统计卡片网格布局 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;             /* gap-6 */
+  margin-bottom: 2rem;     /* mb-8 */
+}
+
+/* 响应式布局 */
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr); /* md:grid-cols-3 */
+  }
+}
+
+/* 单个统计卡片 */
+.stat-card {
+  background-color: #ffffff; /* bg-white */
+  border-radius: 0.5rem;     /* rounded-lg */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* shadow-md */
+  border: 1px solid #9ca3af; /* border border-gray-400 */
+  padding: 1.5rem;           /* p-6 */
+  text-align: center;        /* text-center */
+}
+
+/* 统计值样式 */
+.stat-value {
+  font-size: 2.5rem;         /* text-4xl */
+  font-weight: 700;          /* font-bold */
+  margin-bottom: 0.5rem;     /* mt-2 */
+}
+
+/* 颜色映射（Tailwind 颜色值） */
+.text-blue-600 {
+  color: #2563eb; /* Tailwind's blue-600 */
+}
+
+.text-green-600 {
+  color: #16a34a; /* Tailwind's green-600 */
+}
+
+.text-purple-600 {
+  color: #7c3aed; /* Tailwind's purple-600 */
+}

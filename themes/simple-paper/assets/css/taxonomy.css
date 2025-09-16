@@ -1,0 +1,73 @@
+/* 主容器样式 */
+.main-container {
+  max-width: 1024px;       /* container */
+  margin: 0 auto;          /* mx-auto */
+  padding: 2rem 1rem;      /* px-4 py-8 */
+}
+
+/* 标签网格布局 */
+.tag-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;               /* gap-4 */
+}
+
+/* 响应式布局 */
+@media (min-width: 768px) {
+  .tag-grid {
+    grid-template-columns: repeat(3, 1fr); /* md:grid-cols-3 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .tag-grid {
+    grid-template-columns: repeat(4, 1fr); /* lg:grid-cols-4 */
+  }
+}
+
+@media (min-width: 1280px) {
+  .tag-grid {
+    grid-template-columns: repeat(5, 1fr); /* xl:grid-cols-5 */
+  }
+}
+
+/* 标签卡片样式 */
+.tag-card {
+  background-color: #ffffff; /* bg-white */
+  border-radius: 0.5rem;     /* rounded-lg */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* shadow-md */
+  border: 1px solid #9ca3af; /* border border-gray-400 */
+  padding: 1.5rem;           /* p-6 */
+  text-align: center;        /* text-center */
+  text-decoration: none;     /* 移除链接下划线 */
+}
+
+/* 悬停效果 */
+.hover-effect:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* hover:shadow-lg */
+}
+
+/* 过渡动画 */
+.transition-effect {
+  transition: box-shadow 0.2s ease; /* transition-shadow */
+}
+
+/* 标签标题样式 */
+.tag-title {
+  font-size: 1.125rem;       /* text-lg */
+  font-weight: 600;          /* font-semibold */
+  color: #1f2937;            /* text-gray-800 */
+}
+
+/* 标签计数样式 */
+.tag-count {
+  display: block;            /* block */
+  margin-top: 0.5rem;        /* mt-2 */
+  font-size: 0.875rem;       /* text-sm */
+  color: #6b7280;            /* text-gray-500 */
+}
+
+/* 颜色映射（Tailwind 颜色值） */
+.text-blue-600 {
+  color: #2563eb; /* Tailwind's blue-600 */
+}

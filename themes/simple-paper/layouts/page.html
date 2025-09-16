@@ -1,13 +1,13 @@
 {{ define "main" }}
-  <h1 class="text-3xl font-bold text-center mb-1">{{ .Title }}</h1>
+  <h1 class="page-title">{{ .Title }}</h1>
  
   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
   {{ $dateHuman := .Date | time.Format site.Params.zh.dateFormat }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  <time datetime="{{ $dateMachine }}" class="date-label">{{ $dateHuman }}</time>
 
-  <hr class="my-4 border-gray-600">
+  <hr class="section-separator">
 
-  <div class="content mx-auto px-4 md:px-20 pb-10 leading-[2] max-w-full md:max-w-[80vw]">
+  <div class="post-content">
     {{ .Content }}
   </div>
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}

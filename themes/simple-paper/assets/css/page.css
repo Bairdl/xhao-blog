@@ -1,0 +1,41 @@
+/* page.html start */
+
+/* 页面标题样式 */
+.page-title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;    /* font-bold */
+  text-align: center;  /* text-center */
+  margin-bottom: 0.25rem; /* mb-1 */
+}
+
+/* 日期标签样式 */
+.date-label {
+  display: block;
+  color: #4a5568; /* 默认文本颜色 */
+  margin-bottom: 1rem; /* my-4 的上下间距 */
+}
+
+/* 分隔线样式 */
+.section-separator {
+  border-top: 1px solid #4a5568; /* border-gray-600 */
+  margin: 1rem 0; /* my-4 */
+}
+
+/* 内容容器样式 */
+.post-content {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem; /* px-4 */
+  padding-bottom: 2.5rem; /* pb-10 */
+  line-height: 2;   /* leading-[2] */
+}
+
+/* 响应式调整 */
+@media (min-width: 768px) {
+  .post-content {
+    padding: 0 5rem; /* md:px-20 */
+    max-width: 80vw; /* md:max-w-[80vw] */
+  }
+}
+
+/* page.html end */
