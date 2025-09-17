@@ -17,15 +17,18 @@
     </h3>
     
     {{ if and $showSummary $article.Summary }}
-      {{ if gt (len $article.Summary) 100 }}
+      {{ if gt (len $article.Summary) 50 }}
         <div class="article-card-summary-container">
           <p class="article-card-summary">
-            {{ $article.Summary | truncate 100 "..." }}
+            {{ $summary := $article.Summary | truncate 50 "..." }}
+            {{ $summary | replaceRE "<h[1-6][^>]*>.*?</h[1-6]>" "" | safeHTML }}
           </p>
           <a href="{{ $article.Permalink }}" class="article-card-read-more">阅读更多</a>
         </div>
       {{ else }}
-        <p class="article-card-summary">{{ $article.Summary }}</p>
+        <p class="article-card-summary">
+          {{ $article.Summary | replaceRE "<h[1-6][^>]*>.*?</h[1-6]>" "" | safeHTML }}
+        </p>
       {{ end }}
     {{ end }}
   </div>
