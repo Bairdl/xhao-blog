@@ -3,7 +3,7 @@
 .article-card {
   background-color: #fff;
   border-radius: 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 0.1rem solid grey;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   display: flex;

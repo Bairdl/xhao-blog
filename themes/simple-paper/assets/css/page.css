@@ -26,8 +26,10 @@
   max-width: 100%;
   margin: 0 auto;
   padding: 0 1rem; /* px-4 */
-  padding-bottom: 2.5rem; /* pb-10 */
+  padding-bottom: 1rem;
   line-height: 2;   /* leading-[2] */
+  border: 0.25rem  gray;
+  border-style: dashed solid;
 }
 
 /* 响应式调整 */

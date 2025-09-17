@@ -1,8 +1,9 @@
 {{ define "main" }}
   <div class="main-container">
     {{/*  <h1 class="page-title text-center">{{ .Title }}</h1>  */}}
-    {{ .Title }}
-    
+    {{/*  {{ .Title }}  */}}
+    {{ .Content }}
+
     <div class="article-grid">
       {{ range .Pages }}
         {{ partial "cards/article-card" (dict 

@@ -33,7 +33,7 @@
   background-color: #ffffff; /* bg-white */
   border-radius: 0.5rem;     /* rounded-lg */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* shadow-md */
-  border: 1px solid #9ca3af; /* border border-gray-400 */
+  border: 0.1rem solid #9ca3af; /* border border-gray-400 */
   padding: 1.5rem;           /* p-6 */
   text-align: center;        /* text-center */
 }
