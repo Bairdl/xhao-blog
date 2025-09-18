@@ -3,7 +3,8 @@
 /* 基础布局 */
 body.layout {
   background-color: #ffffff;
-  color: #1a202c; /* gray-900 */
+  color: #1a202c;
+  /* gray-900 */
   min-height: 100vh;
   display: flex;
   margin-top: 2%;
@@ -15,45 +16,61 @@ body.layout {
   position: sticky;
   top: 0;
   z-index: 50;
-  max-width: 1024px; 
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 0 1rem; /* px-4 */
+  padding: 0 1rem;
+  /* px-4 */
 }
 
 /* 主体内容 */
 .main-content {
   flex: 1;
-  max-width: 1024px;
+  width: 90%; /* 关键：固定内容区域宽度 */
+  max-width: 100%; /* 防止在超宽屏时过宽 */
+  height: 90%;
+  /* max-width: 1024px; */
   margin: 0 auto;
-  padding: 2rem 1rem 2rem 1rem; 
+  padding: 2rem 1rem 2rem 1rem;
 }
 
 /* 页脚样式 */
 .footer {
-  border-top: 1px solid #e2e8f0; /* border-gray-200 */
+  border-top: 1px solid #e2e8f0;
+  /* border-gray-200 */
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 1rem; /* px-4 */
+  padding: 0 1rem;
+  /* px-4 */
 }
 
 /* 响应式调整 */
 @media (min-width: 640px) {
+
   .header,
   .main-content,
   .footer {
-    padding-left: 1.5rem; /* sm:px-6 */
+    padding-left: 1.5rem;
+    /* sm:px-6 */
     padding-right: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
+
   .header,
   .main-content,
   .footer {
-    padding-left: 2rem; /* lg:px-8 */
+    padding-left: 2rem;
+    /* lg:px-8 */
     padding-right: 2rem;
   }
 }
 
 /* baseof.html end  */
 
+/* terms.html start */
+
+/* 确保这个 CSS 在页面中被加载 */
+
+
+/* terms.html end */

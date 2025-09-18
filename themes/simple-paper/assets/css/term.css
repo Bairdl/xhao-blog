@@ -1,35 +1,91 @@
 /* 主容器样式 */
 .main-container {
-  max-width: 1024px;       /* container */
-  margin: 0 auto;          /* mx-auto */
-  padding: 2rem 1rem;      /* px-4 py-8 */
+    max-width: 1024px;
+    /* container */
+    margin: 0 auto;
+    /* mx-auto */
+    padding: 2rem 1rem;
+    /* px-4 py-8 */
 }
 
 /* 页面标题样式 */
 .page-title {
-  font-size: 1.875rem;     /* text-3xl */
-  font-weight: 700;        /* font-bold */
-  text-align: center;      /* text-center */
-  margin-bottom: 2rem;     /* mb-8 */
+    font-size: 1.875rem;
+    /* text-3xl */
+    font-weight: 700;
+    /* font-bold */
+    text-align: center;
+    /* text-center */
+    margin-bottom: 2rem;
+    /* mb-8 */
 }
 
 /* 文章网格布局 */
 .article-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;               /* gap-8 */
-  margin-top: 2rem;        /* mt-8 */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    /* gap-8 */
+    margin-top: 2rem;
+    /* mt-8 */
 }
 
 /* 响应式布局 */
 @media (min-width: 768px) {
-  .article-grid {
-    grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
-  }
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* md:grid-cols-2 */
+    }
 }
 
 @media (min-width: 1024px) {
-  .article-grid {
-    grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
-  }
+    .article-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* lg:grid-cols-3 */
+    }
+}
+
+.taxonomy-tags {
+    margin-top: 1.5rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.taxonomy-label {
+    font-weight: 600;
+    color: #555;
+    /* margin-bottom: 0.5rem; */
+    margin: 0.4rem 1rem;
+    font-size: 0.9rem;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tag-item {
+    display: inline-block;
+    background: #f0f4ff;
+    color: #4a6cf7;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(74, 108, 247, 0.15);
+    border: 1px solid #e0e6ff;
+}
+
+.tag-item:hover {
+    background: #e0e6ff;
+    color: #3a5ce0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.25);
 }
