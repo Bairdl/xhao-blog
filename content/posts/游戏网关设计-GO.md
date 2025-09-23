@@ -49,7 +49,7 @@ Session的心跳机制，避免在客户端的静默期被错误清理。当前�
 
 1. 连接建立
 
-``` mermiad
+``` mermaid
 sequenceDiagram
     participant T as TcpServer
     participant SM as SessionManager
