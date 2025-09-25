@@ -2,6 +2,7 @@
 date = '2025-09-15T22:32:30+08:00'
 draft = false
 title = '游戏网关设计 GO'
+categories = ['项目经验']
 mermaid = true
 +++
 
