@@ -25,10 +25,9 @@ body.layout {
 /* 主体内容 */
 .main-content {
   flex: 1;
-  width: 90%; /* 关键：固定内容区域宽度 */
-  max-width: 100%; /* 防止在超宽屏时过宽 */
+  /* width: 90%;  */
+  /* max-width: 100%; */
   height: 90%;
-  /* max-width: 1024px; */
   margin: 0 auto;
   padding: 2rem 1rem 2rem 1rem;
 }

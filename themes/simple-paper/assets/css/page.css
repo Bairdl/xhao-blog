@@ -23,7 +23,7 @@
 
 /* 修改点：1. 移除 max-width 2. 添加 5% 边距 3. 保留原有 padding */
 .post-content {
-  margin: 1% 1%; /* 左右各 5% */
+  /* margin: 1% 1%; */
   padding: 0 1rem;
   padding-bottom: 1rem;
   line-height: 2;
