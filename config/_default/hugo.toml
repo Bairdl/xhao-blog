@@ -4,3 +4,6 @@ languageCode = 'zh-CN'
 title = "XHao's blog"
 theme = "simple-paper"
 ignoreFiles = ["themes/.*/content/.*"]
+
+[outputs]
+home = ["HTML", "SearchIndex"]
