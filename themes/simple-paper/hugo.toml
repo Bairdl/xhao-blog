@@ -3,27 +3,43 @@ languageCode = 'en-US'
 title = 'My New Hugo Site'
 
 [menus]
-  [[menus.main]]
-    name = 'Home'
-    pageRef = '/'
-    weight = 10
+[[menus.main]]
+name = 'Home'
+pageRef = '/'
+weight = 10
 
-  [[menus.main]]
-    name = 'Posts'
-    pageRef = '/posts'
-    weight = 20
+[[menus.main]]
+name = 'Posts'
+pageRef = '/posts'
+weight = 20
 
-  [[menus.main]]
-    name = 'Tags'
-    pageRef = '/tags'
-    weight = 30
+[[menus.main]]
+name = 'Tags'
+pageRef = '/tags'
+weight = 30
 
-  [[menus.main]]
-    name = "统计"
-    pageRef = "/stats"
-    weight = 40
+[[menus.main]]
+name = "统计"
+pageRef = "/stats"
+weight = 40
+
+[[menus.main]]
+name = "搜索"
+pageRef = "/search"
+weight = 11
 
 [module]
-  [module.hugoVersion]
-    extended = false
-    min = '0.146.0'
+[module.hugoVersion]
+extended = false
+min = '0.146.0'
+
+
+[outputFormats]
+  [outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
+    isPlainText = true
+    notAlternative = true
+
+[outputs]
+  home = ["HTML", "SearchIndex"]

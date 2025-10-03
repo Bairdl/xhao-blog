@@ -4,6 +4,11 @@ pageRef = '/'
 weight = 10
 
 [[main]]
+name = "搜索"
+pageRef = "/search"
+weight = 11
+
+[[main]]
 name = '文章'
 pageRef = '/posts'
 weight = 20

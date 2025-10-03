@@ -1,0 +1,122 @@
+{{ define "main" }}
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<div class="main-container">
+  {{ .Content }}
+  <input type="text" id="search-input" placeholder="搜索文章..." class="search-input" />
+  <div id="search-results" class="search-results"></div>
+</div>
+
+<style>
+  .search-input {
+    width: 100%;
+    max-width: 600px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+    box-sizing: border-box;
+  }
+
+  .search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .search-result-card {
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .search-result-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
+
+  .search-result-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  .search-result-card h3 a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+
+  .search-result-card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .search-result-card p {
+    margin: 0;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .search-results p.empty-message {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+    padding: 24px 0;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+
+  fetch('{{ "search.json" | relURL }}')
+    .then(response => {
+      if (!response.ok) throw new Error('无法加载搜索索引');
+      return response.json();
+    })
+    .then(data => {
+      const fuse = new Fuse(data, {
+        keys: ['title', 'summary', 'content'],
+        includeScore: true,
+        threshold: 0.3,
+        ignoreLocation: true
+      });
+
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim();
+        searchResults.innerHTML = '';
+
+        if (query.length < 2) {
+          searchResults.innerHTML = '<p class="empty-message">请输入至少两个字符进行搜索。</p>';
+          return;
+        }
+
+        const results = fuse.search(query);
+
+        if (results.length === 0) {
+          searchResults.innerHTML = '<p class="empty-message">没有找到相关结果。</p>';
+        } else {
+          results.forEach(result => {
+            const item = result.item;
+            const card = document.createElement('div');
+            card.className = 'search-result-card';
+            card.innerHTML = `
+              <h3><a href="${item.permalink}">${item.title}</a></h3>
+              <p>${item.summary.substring(0, 150)}${item.summary.length > 150 ? '...' : ''}</p>
+            `;
+            searchResults.appendChild(card);
+          });
+        }
+      });
+    })
+    .catch(err => {
+      console.error('搜索功能初始化失败:', err);
+      searchResults.innerHTML = '<p class="empty-message">搜索功能暂时不可用，请稍后再试。</p>';
+    });
+});
+</script>
+{{ end }}
