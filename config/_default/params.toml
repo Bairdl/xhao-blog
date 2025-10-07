@@ -1,2 +1,5 @@
 [zh]
-  dateFormat = "2006/01/02  15:04"
+dateFormat = "2006/01/02  15:04"
+
+[timezone]
+name = "Asia/Shanghai" # 或你所在的时区，如 "America/New_York"
