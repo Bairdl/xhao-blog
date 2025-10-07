@@ -15,6 +15,15 @@
   margin-bottom: 1rem;
 }
 
+.date-label > * {
+  display: inline-block;
+  margin-right: 0.75rem; /* 右侧间距 */
+}
+
+.date-label > *:last-child {
+  margin-right: 0; /* 最后一个去掉右边距 */
+}
+
 /* 分隔线样式 */
 .section-separator {
   border-top: 1px solid #4a5568;
