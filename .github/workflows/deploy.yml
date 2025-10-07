@@ -12,6 +12,9 @@ on:
   # 允许在 GitHub 界面上手动触发此工作流
   workflow_dispatch:
 
+env:
+  TZ: Asia/Shanghai # 设置当前环境时区
+
 # 设置此工作流所需的权限
 permissions:
   contents: read    # 授予读取仓库内容的权限
@@ -40,6 +43,13 @@ jobs:
           submodules: recursive
           # 获取全部的历史记录，而不仅仅是最近的一次提交
           fetch-depth: 0
+      
+      - name: Git Configuration
+        run: |
+          git config --global core.quotePath false
+          git config --global core.autocrlf false
+          git config --global core.safecrlf true
+          git config --global core.ignorecase false     
 
       # 步骤2：安装和设置 Hugo 环境
       - name: Setup Hugo
