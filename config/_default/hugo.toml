@@ -14,4 +14,4 @@ home = ["HTML", "SearchIndex"]
 
 [frontmatter]
 # lastmod = ["lastmod", ":fileModTime", ":default"]
-lastmod = ["lastmod", ":git", ":fileModTime", ":default"]
+lastmod = [ ":git", "lastmod", ":fileModTime", ":default"]
