@@ -1,8 +1,8 @@
-+++
-date = '2025-10-08T00:13:24+08:00'
-draft = false
-title = 'SLG游戏地图'
-+++
+---
+date: '2025-10-08T00:13:24+08:00'
+draft: false
+title: 'SLG游戏地图'
+---
 
 # SLG 游戏地图
 

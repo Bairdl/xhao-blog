@@ -1,9 +1,9 @@
-+++
-date = '2025-09-25T22:50:32+08:00'
-draft = false
-title = 'PVE闯关战斗机制'
-categories = ['项目经验']
-+++
+---
+date: '2025-09-25T22:50:32+08:00'
+draft: false
+title: 'PVE闯关战斗机制'
+categories: ['项目经验']
+---
 
 # SLG 游戏 PVE闯关战斗机制设计
 

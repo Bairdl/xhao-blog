@@ -1,8 +1,8 @@
-+++
-date = '2025-10-05T22:15:16+08:00'
-draft = false
-title = 'WebSocket 和 HTTP'
-+++
+---
+date: '2025-10-05T22:15:16+08:00'
+draft: false
+title: 'WebSocket 和 HTTP'
+---
 
 # WebSocket 和 HTTP
 

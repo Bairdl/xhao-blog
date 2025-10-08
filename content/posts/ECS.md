@@ -1,9 +1,9 @@
-+++
-date = '2025-09-25T23:40:30+08:00'
-draft = false
-title = 'ECS介绍'
-mermaid = true
-+++
+---
+date: '2025-09-25T23:40:30+08:00'
+draft: false
+title: 'ECS介绍'
+mermaid: true
+---
 
 # ECS 架构详细介绍
 

@@ -1,3 +1,4 @@
 node_modules
 public
 # config/_default/hugo.toml
+.obsidian
