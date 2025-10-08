@@ -5,7 +5,7 @@ title = "XHao's blog"
 theme = "simple-paper"
 ignoreFiles = [
     "themes/.*/content/.*",
-    "content/todo.md",
+    "todo.md",
 ]
 enableGitInfo = true
 

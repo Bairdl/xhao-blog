@@ -1,4 +1,3 @@
 node_modules
 public
 # config/_default/hugo.toml
-content/todo.md
