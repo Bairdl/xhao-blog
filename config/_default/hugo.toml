@@ -6,6 +6,7 @@ theme = "simple-paper"
 ignoreFiles = [
     "themes/.*/content/.*",
     "todo.md",
+    "content/posts/Templates"
 ]
 
 enableGitInfo = true
