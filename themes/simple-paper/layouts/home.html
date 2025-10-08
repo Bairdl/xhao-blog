@@ -4,7 +4,7 @@
     {{ .Content }}
     
     <div class="article-grid">
-      {{ range first 6 (where site.RegularPages "Type" "posts") }}
+      {{ range first 6 (sort (where site.RegularPages "Type" "posts") "Lastmod" "desc") }}
         {{ partial "cards/article-card" (dict 
           "article" . 
           "showSummary" true

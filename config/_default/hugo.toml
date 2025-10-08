@@ -7,11 +7,13 @@ ignoreFiles = [
     "themes/.*/content/.*",
     "todo.md",
 ]
-enableGitInfo = true
 
-[outputs]
-home = ["HTML", "SearchIndex"]
+enableGitInfo = true
 
 [frontmatter]
 # lastmod = ["lastmod", ":fileModTime", ":default"]
 lastmod = [ ":git", "lastmod", ":fileModTime", ":default"]
+
+
+[outputs]
+home = ["HTML", "SearchIndex"]
