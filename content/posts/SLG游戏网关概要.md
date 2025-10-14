@@ -55,6 +55,7 @@ categories: ['项目经验']
 ### HttpServer
 启动一个Http服务，监听指定端口。后端服务器通过对该端口发起Post请求来推送数据。
 
+---
 
 ## 并发关系
 
@@ -68,10 +69,14 @@ PlayerManager、多个Player、SessionManager、多个Session、与Session一一
 
 服务之间通过信箱通信，属于异步。
 
+---
+
 ## 依赖关系
 
 Session 和 Player 彼此持有对应的服务信箱。
 多数服务都持有 SessionManager 和 PlayerManager 服务信箱。
+
+---
 
 ## 问题
 
@@ -99,6 +104,8 @@ Session和Player状态如何保证一致性？
 SessionManager宕机如何恢复？
 
 路由失败时的降级策略？
+
+---
 
 ## 扩展
 
