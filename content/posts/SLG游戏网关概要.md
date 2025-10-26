@@ -61,13 +61,11 @@ categories: ['项目经验']
 
 ### 并行模块
 
-PlayerManager、多个Player、SessionManager、多个Session、与Session一一对应的Conn、TcpServer、HttpServer 这些服务之间并行执行。
+PlayerManager、多个Player、SessionManager、多个Session、与Session对应的Conn、TcpServer、HttpServer 这些服务之间并行执行。
 
-串行的执行的服务为多个服务内部。
+单个 Actor 服务内部是单线程串行执行的。如 PlayerManager、SessionManager、每个 Session、每个 Player 等。
 
-可以将这些服务视为Actor，每个Actor 服务内部单线程执行，多个Actor 服务之间并行执行。
-
-服务之间通过信箱通信，属于异步。
+不同服务之间通过信箱获取信息，依次处理从信箱中获取的信息。
 
 ---
 
@@ -78,116 +76,7 @@ Session 和 Player 彼此持有对应的服务信箱。
 
 ---
 
-## 问题
-
-1. Session 、中间模块、路由模块，这三个模块在一个线程中运行，这样设计有问题吗？这样设计的原因是中间模块和路由模块实际上是处理请求和获取响应的一部分。
-2. Session在转发响应的时候，需要附加序列号，但是序列号是由player所维护的，这样就需要发送消息到Player的信箱并等待响应。这样的设计是否合理？
-3. 后端推送消息的流程是以Post方式访问HTTP服务的指定端口，HTTP服务处理时将数据转发给Playermanager的信箱，Playermanager解析出PlayerIds将消息转发给对应Player的信箱。Player根据Session是否存在，来选择缓存消息还是发送给Session的消息。Session 再转发给客户端。
-4. 维护方便的处理Player与Session的逻辑处理，比如获取某些字段，所以多数服务比如Playermanager、SessionManager、Session、Player 、路由模块、中间模块、TcpServer和HttpServer 等等都需要持有 PlayerManager和Sessionmanager来获取对应的Player和Session服务的信箱。这样的设计合理吗？
-5. 由于每个服务的内部都是单线程的，且都是依次处理信箱消息，所以好像有死锁的风险，怎么避免？
-6. 怎么设计路由模块。给出一个简要的设计思路。
-7. 对应Session和Player的关闭消息，我是应该发送给SessionManager和PlayerManager还是直接发送给对应的Session和Player？
-8. Session和Player是应该持有对方的ID还是持有对方服务的信箱？
-9. 怎么处理服务关闭的情况，比如Session或者Player关闭？
-10. 怎么平滑的关闭服务？比如关闭Session，怎么确保其关闭，关闭后发送回调吗？
-
-1. 状态一致性
-Session和Player状态如何保证一致性？
-
-当Player被踢时，如何确保旧Session正确关闭？
-
-重连时状态如何平滑转移？
-
-2. 容错机制
-某个Player服务崩溃是否影响其他Player？
-
-SessionManager宕机如何恢复？
-
-路由失败时的降级策略？
-
----
-
-## 扩展
-
-### 路由模块简单设计
-
-``` go
-type Router struct {
-    // 消息ID到后端服务的映射
-    routes map[int32]RouteInfo
-    
-    // 负载均衡器
-    balancers map[string]LoadBalancer
-    
-    // 请求超时管理
-    timeout time.Duration
-}
-
-type RouteInfo struct {
-    ServiceName string    // 后端服务名
-    MsgType     RouteType // 广播、单播、任意播
-    NeedAuth    bool      // 需要认证
-}
-
-// 路由策略
-func (r *Router) Route(msg *Message) []BackendInstance {
-    routeInfo := r.routes[msg.MsgID]
-    instances := r.balancers[routeInfo.ServiceName].Pick()
-    return instances
-}
-```
-
-### 服务关闭
-
-需要双向确认。
-
-``` go
-// 关闭流程：
-// 1. Manager发送关闭请求到服务信箱
-// 2. 服务开始关闭流程，处理剩余消息
-// 3. 服务关闭完成后通知Manager
-// 4. Manager从注册表中移除
-
-type ShutdownAck struct {
-    ServiceID string
-    Completed bool
-}
-
-func (m *SessionManager) shutdownSession(sessionID string) {
-    session := m.sessions[sessionID]
-    if session == nil {
-        return
-    }
-    
-    // 发送关闭请求
-    session.mailbox <- ShutdownRequest{}
-    
-    // 等待确认或超时
-    select {
-    case ack := <-m.shutdownAckChan:
-        if ack.Completed {
-            delete(m.sessions, sessionID)
-        }
-    case <-time.After(5 * time.Second):
-        // 强制清理
-        delete(m.sessions, sessionID)
-    }
-}
-```
-
-关闭状态机
-``` go
-const (
-    StateRunning = iota
-    StateClosing  // 不再接受新消息，但处理存量消息
-    StateClosed   // 完全关闭
-)
-```
-
-消息处理策略：
-- 运行态：正常处理所有消息
-- 关闭中：只处理特定消息（如关闭确认、响应消息），拒绝新请求
-- 已关闭：所有消息丢弃或返回错误
+## 服务迁移
 
 ### 服务迁移的思路和基础要求
 
